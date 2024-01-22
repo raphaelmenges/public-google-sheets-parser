@@ -1,6 +1,3 @@
-const isBrowser = typeof require === 'undefined'
-const fetch = isBrowser ? /* istanbul ignore next */window.fetch : require('../src/fetch')
-
 class PublicGoogleSheetsParser {
   constructor (spreadsheetId, sheetInfo) {
     this.id = spreadsheetId
@@ -38,7 +35,7 @@ class PublicGoogleSheetsParser {
       url = url.concat(`sheet=${this.sheetName}`)
     }
 
-    return fetch(url)
+    return window.fetch(url)
       .then((r) => r && r.ok && r.text ? r.text() : null)
       .catch(/* istanbul ignore next */(_) => null)
   }
@@ -88,10 +85,4 @@ class PublicGoogleSheetsParser {
   }
 }
 
-/* istanbul ignore next */
-if (isBrowser) {
-  window.PublicGoogleSheetsParser = PublicGoogleSheetsParser
-} else {
-  module.exports = PublicGoogleSheetsParser
-  module.exports.default = PublicGoogleSheetsParser
-}
+window.PublicGoogleSheetsParser = PublicGoogleSheetsParser
