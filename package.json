@@ -3,6 +3,7 @@
   "version": "1.3.2",
   "description": "Get JSONArray from public google sheets with using only spreadsheetId",
   "scripts": {
+    "prepare": "npm run build:dist",
     "build:dist": "npx babel ./src/index.js --out-file ./dist/index.js",
     "test": "node ./test",
     "lint": "eslint --format ./node_modules/eslint-friendly-formatter --ext .js .",
@@ -30,10 +31,9 @@
     "url": "https://github.com/fureweb-com/public-google-sheets-parser.git"
   },
   "homepage": "https://github.com/fureweb-com/public-google-sheets-parser.git",
-  "dependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test"
+      "pre-commit": "npm run lint && npm run test"
     }
   },
   "eslintIgnore": [
@@ -43,7 +43,7 @@
     "coverage"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
+    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.8",
     "@babel/plugin-transform-async-to-generator": "^7.12.1",
     "@babel/plugin-transform-classes": "^7.12.1",
